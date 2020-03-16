@@ -184,7 +184,6 @@ bool ConfigManager::load()
 		boolean[OPTIMIZE_DATABASE] = getGlobalBoolean(L, "startupDatabaseOptimization", true);
 
 		
-		integer[WORLD_ID] = getGlobalNumber(L, "worldId", 0);
 		string[IP] = getGlobalString(L, "ip", "127.0.0.1");
 
 		string[MAP_NAME] = getGlobalString(L, "mapName", "forgotten");
@@ -195,6 +194,10 @@ bool ConfigManager::load()
 		string[MYSQL_PASS] = getGlobalString(L, "mysqlPass", "");
 		string[MYSQL_DB] = getGlobalString(L, "mysqlDatabase", "forgottenserver");
 		string[MYSQL_SOCK] = getGlobalString(L, "mysqlSock", "");
+
+		string[VERSION_STR] = getGlobalString(L, "clientVersionStr", "");
+		
+		integer[WORLD_ID] = getGlobalNumber(L, "worldId", 0);
 
 		integer[SQL_PORT] = getGlobalNumber(L, "mysqlPort", 3306);
 
