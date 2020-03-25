@@ -30,12 +30,12 @@
 #include "storeinbox.h"
 
 #include "scheduler.h"
-#include "gameserverconfig.h"
+#include "gameworldconfig.h"
 
 
 extern ConfigManager g_config;
 extern Game g_game;
-extern GameserverConfig g_gameserver;
+extern GameWorldConfig g_gameworld;
 
 Account IOLoginData::loadAccount(uint32_t accno)
 {
@@ -1057,7 +1057,7 @@ bool IOLoginData::hasBiddedOnHouse(uint32_t guid)
 
 
 	std::ostringstream query;
-	query << "SELECT `id` FROM `houses` WHERE `world_id` = "<< g_gameserver.getWorldId() <<" AND `highest_bidder` = " << guid << " LIMIT 1";
+	query << "SELECT `id` FROM `houses` WHERE `world_id` = "<< g_gameworld.getWorldId() <<" AND `highest_bidder` = " << guid << " LIMIT 1";
 	return db.storeQuery(query.str()).get() != nullptr;
 
 }

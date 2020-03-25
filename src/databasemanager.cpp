@@ -23,10 +23,10 @@
 
 #include "configmanager.h"
 #include "luascript.h"
-#include "gameserverconfig.h"
+#include "gameworldconfig.h"
 
 extern ConfigManager g_config;
-extern GameserverConfig g_gameserver;
+extern GameWorldConfig g_gameworld;
 
 bool DatabaseManager::optimizeTables()
 {
@@ -64,7 +64,7 @@ bool DatabaseManager::isDatabaseSetup()
 
 int32_t DatabaseManager::getDatabaseVersion()
 {
-	uint16_t worldId = g_gameserver.getWorldId();
+	uint16_t worldId = g_gameworld.getWorldId();
 	
 	if (!tableExists("server_config")) {
 		Database& db = Database::getInstance();
@@ -142,7 +142,7 @@ bool DatabaseManager::getDatabaseConfig(const std::string& config, int32_t& valu
 {
 	Database& db = Database::getInstance();
 	std::ostringstream query;
-	uint16_t worldId = g_gameserver.getWorldId();
+	uint16_t worldId = g_gameworld.getWorldId();
 
 	query << "SELECT `value` FROM `server_config` WHERE `world_id` = "<< worldId <<" AND `config` = " << db.escapeString(config);
 
@@ -161,7 +161,7 @@ void DatabaseManager::registerDatabaseConfig(const std::string& config, int32_t 
 	Database& db = Database::getInstance();
 
 	std::ostringstream query;
-	uint16_t worldId = g_gameserver.getWorldId();
+	uint16_t worldId = g_gameworld.getWorldId();
 
 
 	int32_t tmp;

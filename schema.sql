@@ -347,6 +347,7 @@ CREATE TABLE IF NOT EXISTS `player_storage` (
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS `server_config` (
+  `world_id` int(11) NOT NULL DEFAULT '0',
   `config` varchar(50) NOT NULL,
   `value` varchar(256) NOT NULL DEFAULT '',
   PRIMARY KEY `config` (`config`)
@@ -399,6 +400,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 
 CREATE TABLE IF NOT EXISTS `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `world_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
   `posx` int NOT NULL DEFAULT '0',
   `posy` int NOT NULL DEFAULT '0',
@@ -506,7 +508,7 @@ CREATE TABLE IF NOT EXISTS `guilds` (
   `creationdata` int(11) NOT NULL,
   `motd` varchar(255) NOT NULL DEFAULT '',
   `residence` int(11) NOT NULL DEFAULT '0',
-  `description` VARCHAR(2000) NOT NULL DEFAULT '',
+  `description` text NOT NULL DEFAULT '',
   `balance` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   CONSTRAINT `guilds_pk` PRIMARY KEY (`id`),
   CONSTRAINT `guilds_name_unique` UNIQUE (`name`),
@@ -644,6 +646,7 @@ CREATE TABLE IF NOT EXISTS `guild_membership` (
 
 CREATE TABLE IF NOT EXISTS `houses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `world_id` int(11) NOT NULL DEFAULT '0',
   `owner` int(11) NOT NULL,
   `paid` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `warnings` int(11) NOT NULL DEFAULT '0',
@@ -690,6 +693,7 @@ DELIMITER ;
 
 CREATE TABLE IF NOT EXISTS `house_lists` (
   `house_id` int(11) NOT NULL,
+  `world_id` int(11) NOT NULL DEFAULT '0',
   `listid` int(11) NOT NULL,
   `list` text NOT NULL,
   INDEX `house_id` (`house_id`),
@@ -749,6 +753,7 @@ CREATE TABLE IF NOT EXISTS `market_history` (
 
 CREATE TABLE IF NOT EXISTS `market_offers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `world_id` int(11) NOT NULL DEFAULT '0',
   `player_id` int(11) NOT NULL,
   `sale` tinyint(1) NOT NULL DEFAULT '0',
   `itemtype` int(10) UNSIGNED NOT NULL,
@@ -773,6 +778,7 @@ CREATE TABLE IF NOT EXISTS `market_offers` (
 --
 
 CREATE TABLE IF NOT EXISTS `players_online` (
+  `world_id` int(11) NOT NULL DEFAULT '0',
   `player_id` int(11) NOT NULL,
   CONSTRAINT `players_online_pk` PRIMARY KEY (`player_id`)
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
@@ -1017,6 +1023,7 @@ CREATE TABLE IF NOT EXISTS `store_history` (
 --
 
 CREATE TABLE IF NOT EXISTS `tile_store` (
+  `world_id` int(11) NOT NULL DEFAULT '0',
   `house_id` int(11) NOT NULL,
   `data` longblob NOT NULL,
   INDEX `house_id` (`house_id`),

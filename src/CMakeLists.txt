@@ -21,7 +21,7 @@ set(tfs_SRC
 	${CMAKE_CURRENT_LIST_DIR}/events.cpp
 	${CMAKE_CURRENT_LIST_DIR}/fileloader.cpp
 	${CMAKE_CURRENT_LIST_DIR}/game.cpp
-	${CMAKE_CURRENT_LIST_DIR}/gameserverconfig.cpp
+	${CMAKE_CURRENT_LIST_DIR}/gameworldconfig.cpp
 	${CMAKE_CURRENT_LIST_DIR}/globalevent.cpp
 	${CMAKE_CURRENT_LIST_DIR}/guild.cpp
 	${CMAKE_CURRENT_LIST_DIR}/groups.cpp

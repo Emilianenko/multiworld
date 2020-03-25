@@ -50,7 +50,8 @@
 #include "talkaction.h"
 #include "weapons.h"
 
-#include "gameserverconfig.h"
+#include "gameworldconfig.h"
+
 
 
 extern ConfigManager g_config;
@@ -66,7 +67,8 @@ extern Monsters g_monsters;
 extern MoveEvents* g_moveEvents;
 extern Weapons* g_weapons;
 extern Scripts* g_scripts;
-extern GameserverConfig g_gameserver;
+extern GameWorldConfig g_gameworld;
+
 
 
 Game::Game()
@@ -5068,7 +5070,7 @@ void Game::updateCreatureType(Creature* creature)
 void Game::loadMotdNum()
 {
 	Database& db = Database::getInstance();
-	uint16_t worldId = g_gameserver.getWorldId();
+	uint16_t worldId = g_gameworld.getWorldId();
 
 	std::ostringstream selectQuery;
 	selectQuery << "SELECT `value` FROM `server_config` WHERE `world_id` = "<< worldId <<" AND `config` = 'motd_num'";
@@ -5104,7 +5106,8 @@ void Game::saveMotdNum() const
 {
 	Database& db = Database::getInstance();
 
-	uint16_t worldId = g_gameserver.getWorldId();
+	uint16_t worldId = g_gameworld.getWorldId();
+
 
 	std::ostringstream query;
 	query << "UPDATE `server_config` SET `value` = '" << motdNum << "' WHERE `world_id` = " << worldId << " AND `config` = 'motd_num'";
@@ -5134,7 +5137,8 @@ void Game::updatePlayersRecord() const
 {
 	Database& db = Database::getInstance();
 
-	uint16_t worldId = g_gameserver.getWorldId();
+	uint16_t worldId = g_gameworld.getWorldId();
+
 
 	std::ostringstream query;
 	query << "UPDATE `server_config` SET `value` = '" << playersRecord << "' WHERE `world_id` = "<< worldId <<" AND `config` = 'players_record'";
@@ -5145,7 +5149,7 @@ void Game::updatePlayersRecord() const
 void Game::loadPlayersRecord()
 {
 	Database& db = Database::getInstance();
-	uint16_t worldId = g_gameserver.getWorldId();
+	uint16_t worldId = g_gameworld.getWorldId();
 	std::ostringstream loadQuery;
 	loadQuery << "SELECT `value` FROM `server_config` WHERE `world_id` = " << worldId << " AND `config` = 'players_record'";
 
