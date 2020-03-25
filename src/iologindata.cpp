@@ -213,7 +213,9 @@ void IOLoginData::updateOnlineStatus(uint32_t guid, bool login)
 	}
 
 	if (login) {
-		Database::getInstance().executeQuery(fmt::format("INSERT INTO `players_online` VALUES ({:d})", guid));
+
+		query << "INSERT INTO `players_online` VALUES (" << guid << ') WHERE `world_id` = "<< g_gameserver.getWorldId() <<"';
+
 	} else {
 		Database::getInstance().executeQuery(fmt::format("DELETE FROM `players_online` WHERE `player_id` = {:d}", guid));
 	}
