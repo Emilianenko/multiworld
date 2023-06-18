@@ -2,7 +2,7 @@ function onStartup()
 
 
 	local time = os.time()
-	db.asyncQuery('TRUNCATE TABLE `players_online` WHERE `world_id` = '..configManager.getNumber(configKeys.WORLD_ID)..'')
+	db.asyncQuery('DELETE FROM `players_online` WHERE `world_id` = '..configManager.getNumber(configKeys.WORLD_ID)..'')
 
 	-- zerar storages e permitir compra de boost na store
 	db.query('UPDATE `player_storage` SET `value` = 0 WHERE `player_storage`.`key` = 51052')
