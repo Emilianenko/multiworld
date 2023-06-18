@@ -86,6 +86,7 @@ bool IOLoginData::loginserverAuthentication(const std::string& name, const std::
 {
 	Database& db = Database::getInstance();
 
+	std::ostringstream query;
 	DBResult_ptr result = db.storeQuery(fmt::format("SELECT `id`, `name`, `password`, `secret`, `type`, `premium_ends_at` FROM `accounts` WHERE `name` = {:s}", db.escapeString(name)));
 	if (!result) {
 		return false;
@@ -208,13 +209,14 @@ void IOLoginData::setAccountType(uint32_t accountId, AccountType_t accountType)
 
 void IOLoginData::updateOnlineStatus(uint32_t guid, bool login)
 {
+	std::ostringstream query;
 	if (g_config.getBoolean(ConfigManager::ALLOW_CLONES)) {
 		return;
 	}
 
 	if (login) {
 
-		query << "INSERT INTO `players_online` VALUES (" << guid << ')';>>>>>>> a83ca118 (Returned to the original meanwhile im looking for a workout on my local source)
+		query << "INSERT INTO `players_online` VALUES (" << guid << ')';
 	} else {
 		Database::getInstance().executeQuery(fmt::format("DELETE FROM `players_online` WHERE `player_id` = {:d}", guid));
 	}

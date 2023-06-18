@@ -108,6 +108,7 @@ class ConfigManager
 		enum integer_config_t {
 			SQL_PORT,
 			WORLD_ID,
+			VERSION_STR,
 			MAX_PLAYERS,
 			PZ_LOCKED,
 			DEFAULT_DESPAWNRANGE,
