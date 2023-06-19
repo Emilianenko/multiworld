@@ -195,7 +195,7 @@ bool ConfigManager::load()
 		string[MYSQL_DB] = getGlobalString(L, "mysqlDatabase", "forgottenserver");
 		string[MYSQL_SOCK] = getGlobalString(L, "mysqlSock", "");
 
-		string[VERSION_STR] = getGlobalString(L, "clientVersionStr", "");
+		string[CLIENT_VERSION_STR] = getGlobalString(L, "clientVersionStr", "");
 		
 		integer[WORLD_ID] = getGlobalNumber(L, "worldId", 0);
 
